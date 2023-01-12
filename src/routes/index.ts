@@ -6,8 +6,8 @@ const routes = Router();
   import your routes here
 
   example:
-    import { userRoutes } from '../modules/users/controller';
-    router.use('/users', userRoutes);
+    import { userRoutes } from '../modules/user/routes';
+    routes.use('/users', userRoutes);
 */
 
 export { routes };
