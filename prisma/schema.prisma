@@ -1,17 +1,14 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -25,7 +22,7 @@ model User {
 }
 
 model Task {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
@@ -35,7 +32,7 @@ model Task {
   color       String
 
   User   User   @relation(fields: [userId], references: [id])
-  userId String
+  userId String @db.ObjectId
 
   @@map("tasks")
 }
