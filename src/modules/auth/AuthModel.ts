@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import { IsUsername } from '../../validator';
 
-export class RegisterDTO {
+class RegisterDTO {
   @IsString()
   @IsUsername({
     message:
@@ -32,19 +32,9 @@ export class RegisterDTO {
     minNumbers: 1,
   })
   password: string;
-
-  @IsAlpha()
-  @IsString()
-  @IsOptional()
-  firstName: string;
-
-  @IsAlpha()
-  @IsString()
-  @IsOptional()
-  lastName: string;
 }
 
-export class LoginDTO {
+class LoginDTO {
   @IsString()
   @IsOptional()
   username: string;
@@ -57,3 +47,5 @@ export class LoginDTO {
   @IsString()
   password: string;
 }
+
+export { RegisterDTO, LoginDTO };
