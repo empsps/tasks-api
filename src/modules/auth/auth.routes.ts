@@ -1,10 +1,13 @@
 import { Router } from 'express';
+import { AuthController } from './auth.controller';
 
 const routes = Router();
 
+const controller = new AuthController();
+
 // Register new user
 routes.post('/register', (req, res) => {
-  res.json({ message: 'Register' });
+  return controller.register(req, res);
 });
 
 routes.post('/login', (req, res) => {
