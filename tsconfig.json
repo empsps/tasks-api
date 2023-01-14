@@ -7,6 +7,7 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "baseUrl": "./",
+    "experimentalDecorators": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
