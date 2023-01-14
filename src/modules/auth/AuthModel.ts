@@ -5,7 +5,6 @@ import {
   IsOptional,
   IsString,
   IsStrongPassword,
-  Length,
 } from 'class-validator';
 import { IsUsername } from '../../validator';
 
