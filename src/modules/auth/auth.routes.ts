@@ -11,7 +11,7 @@ routes.post('/register', (req, res) => {
 });
 
 routes.post('/login', (req, res) => {
-  res.json({ message: 'Login' });
+  return controller.login(req, res);
 });
 
 export { routes as authRoutes };

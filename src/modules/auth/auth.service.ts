@@ -1,6 +1,6 @@
 import { hash as argonHash } from 'argon2';
-import prisma from '../../prisma';
 import { RegisterDTO } from './AuthModel';
+import prisma from '../../prisma';
 
 class AuthService {
   async create(newUser: RegisterDTO) {
@@ -24,7 +24,7 @@ class AuthService {
     return createdUser;
   }
 
-  async userExists(username?: string, email?: string) {
+  private async userExists(username?: string, email?: string) {
     if (username) {
       if (await this.findUserByUsername(username)) return 'Username already taken';
     }
@@ -36,7 +36,7 @@ class AuthService {
     return '';
   }
 
-  async findUserByUsername(username: string) {
+  private async findUserByUsername(username: string) {
     return await prisma.user.findUnique({
       where: {
         username,
@@ -44,7 +44,7 @@ class AuthService {
     });
   }
 
-  async findUserByEmail(email: string) {
+  private async findUserByEmail(email: string) {
     return await prisma.user.findUnique({
       where: {
         email,

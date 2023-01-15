@@ -24,4 +24,6 @@ export class AuthController {
       return res.status(500).json({ error });
     }
   }
+
+  async login(req: Request, res: Response) {}
 }
