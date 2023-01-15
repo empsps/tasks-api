@@ -21,7 +21,7 @@ export class AuthController {
       const createdUser = await service.create(newUser);
       return res.status(201).json({ username: createdUser.username, email: createdUser.email });
     } catch (error) {
-      return res.status(500).json({ error: 'Something went wrong' });
+      return res.status(500).json({ error });
     }
   }
 }
