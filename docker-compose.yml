@@ -1,17 +1,15 @@
-version: '3.9'
+version: '3.8'
 services:
-  db:
-    image: mongo
-    container_name: db
-    restart: always
+  dev-db:
+    image: postgres:15
     ports:
-      - ${DB_PORT}:27017
+      - ${DB_PORT}:5432
     environment:
-      MONGO_INITDB_DATABASE: ${DB_NAME}
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     networks:
-      - dev
+      - devnw
 
 networks:
-  dev:
+  devnw:
