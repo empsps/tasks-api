@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import session from 'express-session';
+import session, { SessionOptions } from 'express-session';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { routes } from './routes';
 import cookieParser from 'cookie-parser';
@@ -14,21 +14,25 @@ if (!process.env.SESSION_SECRET) {
 
 const server = express();
 server.use(express.json());
-server.use(
-  session({
-    cookie: {
-      maxAge: 31560000000000,
-    },
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    store: new PrismaSessionStore(prisma, {
-      checkPeriod: 2 * 60 * 1000,
-      dbRecordIdFunction: undefined,
-      dbRecordIdIsSessionId: true,
-    }),
+
+const expressSession: SessionOptions = {
+  cookie: {
+    maxAge: 15778800000,
+    secure: 'auto',
+    httpOnly: true,
+  },
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  rolling: true,
+  saveUninitialized: true,
+  store: new PrismaSessionStore(prisma, {
+    checkPeriod: 2 * 60 * 1000,
+    dbRecordIdFunction: undefined,
+    dbRecordIdIsSessionId: true,
   }),
-);
+};
+
+server.use(session(expressSession));
 
 // Import all routes
 server.use('/', routes);
