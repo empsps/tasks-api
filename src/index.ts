@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import session, { SessionOptions } from 'express-session';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { routes } from './routes';
-import cookieParser from 'cookie-parser';
 import prisma from './prisma';
 
 dotenv.config();
